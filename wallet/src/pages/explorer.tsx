@@ -1,39 +1,24 @@
 import * as React from 'react'
-import type { NextPage, GetStaticProps } from 'next'
-import Link from 'next/link'
-
+import type { NextPage, GetServerSideProps } from 'next'
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 
 import Layout from '../components/layout'
-//import Style from '../styles/index.module.scss'
 
-type IndexProps = {
+type ExplorerProps = {
   message: string
 }
 
-const Index: NextPage<IndexProps> = ({ message }) => {
+const Explorer: NextPage<ExplorerProps> = ({ message }) => {
   return (
     <Layout title='Router'>
       <React.Fragment>
         <CssBaseline />
         <Container fixed>
           <Box sx={{ bgcolor: 'rgb(49, 58, 95)', height: '100vh' }}>
-            <h1>Router</h1>
+            <h1>Explorer</h1>
             <p>{message}</p>
-            <ul>
-              <li>
-                <Link href='/blog'>
-                  <a>To Blog</a>
-                </Link>
-              </li>
-              <li>
-                <Link href='/contact'>
-                  <a>To Contact</a>
-                </Link>
-              </li>
-            </ul>
           </Box>
         </Container>
       </React.Fragment>
@@ -41,12 +26,13 @@ const Index: NextPage<IndexProps> = ({ message }) => {
   )
 }
 
-export default Index
+export default Explorer
 
-// For SSG
-export const getStaticProps: GetStaticProps<IndexProps> = async (context) => {
+// For SSR
+export const getServerSideProps: GetServerSideProps<ExplorerProps> = async (context) => {
   const timestamp = new Date().toLocaleString()
   const message = `getStaticProps is called at ${timestamp}`
+
   return {
     props: {
       message,

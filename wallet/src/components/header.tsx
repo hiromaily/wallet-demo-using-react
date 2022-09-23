@@ -1,6 +1,7 @@
-import * as React from 'react'
+//import * as React from 'react'
+import { useCallback } from 'react'
 import Head from 'next/head'
-
+import Router from 'next/router'
 // import Link from 'next/link'
 // import Image from 'next/image'
 
@@ -18,13 +19,23 @@ type HeaderProps = {
 }
 
 const Header = ({ title }: HeaderProps) => {
+  const onClickRouter = useCallback(() => {
+    Router.push('/')
+  }, [])
+  const onClickExplorer = useCallback(() => {
+    Router.push('/explorer')
+  }, [])
+  const onClickConnect = useCallback(() => {
+    console.log('click Connect Wallet')
+  }, [])
+
   return (
     <>
       <Head>
         <title>{title}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <AppBar sx={{ bgcolor: "rgb(27, 33, 59)" }} position='static'>
+      <AppBar sx={{ bgcolor: 'rgb(27, 33, 59)' }} position='static'>
         <Toolbar>
           <IconButton size='large' edge='start' color='inherit' aria-label='menu' sx={{ mr: 2 }}>
             <MenuIcon />
@@ -32,9 +43,15 @@ const Header = ({ title }: HeaderProps) => {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Wallet Header
           </Typography>
-          <Button color='inherit'>Router</Button>
-          <Button color='inherit'>Explorer</Button>
-          <Button color='inherit'>Connect to a wallet</Button>
+          <Button color='inherit' onClick={onClickRouter}>
+            Router
+          </Button>
+          <Button color='inherit' onClick={onClickExplorer}>
+            Explorer
+          </Button>
+          <Button color='inherit' onClick={onClickConnect}>
+            Connect to a wallet
+          </Button>
         </Toolbar>
       </AppBar>
     </>
