@@ -9,3 +9,7 @@ dev:
 .PHONY: lint
 lint:
 	npm run all
+
+.PHONY: build
+build:
+	npm run build

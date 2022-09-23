@@ -1,6 +1,7 @@
 import * as React from 'react'
 import type { NextPage, GetStaticProps } from 'next'
-import Link from 'next/link'
+import Image from 'next/image'
+//import Link from 'next/link'
 
 import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
@@ -22,18 +23,7 @@ const Index: NextPage<IndexProps> = ({ message }) => {
           <Box sx={{ bgcolor: 'rgb(49, 58, 95)', height: '100vh' }}>
             <h1>Router</h1>
             <p>{message}</p>
-            <ul>
-              <li>
-                <Link href='/blog'>
-                  <a>To Blog</a>
-                </Link>
-              </li>
-              <li>
-                <Link href='/contact'>
-                  <a>To Contact</a>
-                </Link>
-              </li>
-            </ul>
+            <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
           </Box>
         </Container>
       </React.Fragment>

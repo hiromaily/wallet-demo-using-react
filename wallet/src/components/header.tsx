@@ -34,6 +34,7 @@ const Header = ({ title }: HeaderProps) => {
       <Head>
         <title>{title}</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <AppBar sx={{ bgcolor: 'rgb(27, 33, 59)' }} position='static'>
         <Toolbar>
