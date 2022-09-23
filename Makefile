@@ -26,6 +26,11 @@ add-additional:
 	npm install --save-dev eslint-plugin-import @typescript-eslint/parser eslint-import-resolver-typescript
 	npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier eslint-plugin-react-hooks
 	touch .prettierrc
+	touch .prettierignore
+
+.PHONY: add-jest
+add-jest:
+	npm install --save-dev jest @types/jest ts-jest ts-node
 
 
 #------------------------------------------------------------------------------
