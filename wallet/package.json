@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --dir src",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "type-check": "tsc --noEmit",

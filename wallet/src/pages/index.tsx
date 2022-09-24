@@ -1,11 +1,11 @@
-import * as React from 'react'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import CssBaseline from '@mui/material/CssBaseline'
 import type { NextPage, GetStaticProps } from 'next'
 import Image from 'next/image'
 //import Link from 'next/link'
 
-import CssBaseline from '@mui/material/CssBaseline'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
+import * as React from 'react'
 
 import Layout from '../components/layout'
 //import Style from '../styles/index.module.scss'

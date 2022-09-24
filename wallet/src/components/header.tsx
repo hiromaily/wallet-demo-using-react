@@ -1,18 +1,18 @@
 //import * as React from 'react'
-import { useCallback } from 'react'
+import MenuIcon from '@mui/icons-material/Menu'
+import AppBar from '@mui/material/AppBar'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Router from 'next/router'
+import { useCallback } from 'react'
 // import Link from 'next/link'
 // import Image from 'next/image'
 
 // import material UI components
-import AppBar from '@mui/material/AppBar'
 //import Box from "@mui/material/Box";
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
 
 type HeaderProps = {
   title: string

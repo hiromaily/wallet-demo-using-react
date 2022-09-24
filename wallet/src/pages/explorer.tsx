@@ -1,8 +1,8 @@
-import * as React from 'react'
-import type { NextPage, GetServerSideProps } from 'next'
-import CssBaseline from '@mui/material/CssBaseline'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
+import CssBaseline from '@mui/material/CssBaseline'
+import type { NextPage, GetServerSideProps } from 'next'
+import * as React from 'react'
 
 import Layout from '../components/layout'
 
