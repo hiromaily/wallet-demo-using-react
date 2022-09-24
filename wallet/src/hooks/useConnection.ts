@@ -2,12 +2,12 @@ import { useState } from 'react'
 
 // custom hook for connecting network
 export const useConnection = () => {
-  const [isConnected, setConnectionStatus] = useState(false);
+  const [isConnected, setConnectionStatus] = useState(false)
 
   // connect network
   const connect = () => {
     if (isConnected) return
-    // TODO: connect to metamask 
+    // TODO: connect to metamask
     console.log('connect()')
 
     // connected
@@ -16,7 +16,7 @@ export const useConnection = () => {
 
   const disconnect = () => {
     if (!isConnected) return
-    // TODO: disconnect from metamask 
+    // TODO: disconnect from metamask
     console.log('disconnect()')
 
     // disconnected
