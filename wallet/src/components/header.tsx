@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Router from 'next/router'
 import { useCallback } from 'react'
+import ConnectButton from './connectButton'
+
 // import Link from 'next/link'
 // import Image from 'next/image'
 
@@ -25,9 +27,9 @@ const Header = ({ title }: HeaderProps) => {
   const onClickExplorer = useCallback(() => {
     Router.push('/explorer')
   }, [])
-  const onClickConnect = useCallback(() => {
-    console.log('click Connect Wallet')
-  }, [])
+  // const onClickConnect = useCallback(() => {
+  //   console.log('click Connect Wallet')
+  // }, [])
 
   return (
     <>
@@ -50,9 +52,7 @@ const Header = ({ title }: HeaderProps) => {
           <Button color='inherit' onClick={onClickExplorer}>
             Explorer
           </Button>
-          <Button color='inherit' onClick={onClickConnect}>
-            Connect to a wallet
-          </Button>
+          <ConnectButton />
         </Toolbar>
       </AppBar>
     </>
