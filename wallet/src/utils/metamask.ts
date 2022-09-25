@@ -4,15 +4,16 @@ import { chainIDParamMap } from './chainid'
 //import { storeChainID } from '$lib/metamask/store';
 import { toDecimal } from './hex'
 
+// TODO: send transaction
+// https://docs.metamask.io/guide/sending-transactions.html
+
 class Metamask {
   private provider: any
 
+  // provider is equal to `window.ethereum`
   constructor(provider: any) {
     this.provider = provider
   }
-
-  // TODO: send transaction
-  // https://docs.metamask.io/guide/sending-transactions.html
 
   // getAccount is equivalent to deprecated ethereum.enable()
   public async getAccount(): Promise<string> {
@@ -64,7 +65,6 @@ class Metamask {
 
   // switch network
   public async switchEthereumChain(chainID: number) {
-    //const chainIDStr = '0x' + chainID.toString(16).toUpperCase();
     const chainIDStr = '0x' + chainID.toString(16)
 
     await this.provider.request({
@@ -73,6 +73,7 @@ class Metamask {
     })
   }
 
+  // [WIP]
   // Requests that the user tracks the token in MetaMask.
   // Returns a boolean indicating if the token was successfully added.
   public async watchAsset(token: string) {
@@ -100,13 +101,14 @@ class Metamask {
   }
 
   // set events
+  // https://docs.metamask.io/guide/ethereum-provider.html#events
+  // [WIP] implement event dispatcher and event subscriber
   public readyEvent() {
-    // TODO: events
-    // https://docs.metamask.io/guide/ethereum-provider.html#events
     this.provider.on('accountsChanged', (accounts: any) => {
       // Time to reload your interface with accounts[0]!
       console.log(`event[accountsChanged]: ${accounts[0]}`)
     })
+
     this.provider.on('chainChanged', (chainId: number) => {
       console.log(`event[chainChanged]: ${chainId}`)
       // Handle the new chain.
@@ -130,16 +132,6 @@ const isMetamaskInstalled = (): boolean => {
   return false
 }
 
-const getProvider = async (): Promise<unknown | undefined> => {
-  const provider = await detectEthereumProvider()
-  // FIXME: how to handle??
-  if (provider !== window.ethereum) {
-    console.error('Do you have multiple wallets installed?')
-    return undefined
-  }
-  return provider
-}
-
 const openExtension = () => {
   // const link =
   // 	'https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn/related';
@@ -148,4 +140,14 @@ const openExtension = () => {
   onboarding.startOnboarding()
 }
 
-export { Metamask, isMetamaskInstalled, getProvider, openExtension }
+// //getProvider just returns `window.ethereum`
+// const getProvider = async (): Promise<unknown | undefined> => {
+//   const provider = await detectEthereumProvider()
+//   if (provider !== window.ethereum) {
+//     console.error('Do you have multiple wallets installed?')
+//     return undefined
+//   }
+//   return provider
+// }
+
+export { Metamask, isMetamaskInstalled, openExtension }

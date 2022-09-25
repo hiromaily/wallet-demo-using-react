@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Router from 'next/router'
 //import { useMetaMask } from 'metamask-react'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useLayoutEffect } from 'react'
 import ConnectButton from './connectButton'
 import { useMetamask } from '../hooks/useMetamask'
 import { openExtension } from '../utils/metamask'
@@ -69,6 +69,9 @@ const Header = ({ title }: HeaderProps) => {
       connect()
     }
   }, [isConnected])
+
+  // useLayoutEffect(() => {
+  // }, [isConnected])
 
   return (
     <>

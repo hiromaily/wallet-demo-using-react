@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Metamask, isMetamaskInstalled } from '../utils/metamask'
 
-// Note: this code would not be used for now
+// Take care when using window object with Next.js
+// This custom hook must be used along with multiple components
 
 let meta: Metamask | undefined
 
@@ -17,15 +18,9 @@ export const useMetamask = () => {
 
   useEffect(() => {
     meta = getMatamask()
+    // check initial connection
+    if (meta?.isConnected()) setConnectionStatus(true)
   }, [])
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const isMetamask = isMetamaskInstalled()
-  //     console.log('useMetamask.ts:', isMetamask)
-  //     setInstallationStatus(isMetamask)
-  //   })()
-  // }, [])
 
   // metamask installation
   const isInstalled = (): boolean => {
