@@ -4,9 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import type { NextPage, GetStaticProps } from 'next'
 import Image from 'next/image'
 //import Link from 'next/link'
-
 import * as React from 'react'
-
 import Layout from '../components/layout'
 //import Style from '../styles/index.module.scss'
 

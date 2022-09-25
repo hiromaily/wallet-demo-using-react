@@ -1,7 +1,6 @@
 // import Link from 'next/link'
 // import Style from '../styles/common.module.scss'
 
-// import material UI components
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import RestoreIcon from '@mui/icons-material/Restore'

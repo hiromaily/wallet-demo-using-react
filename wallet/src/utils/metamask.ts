@@ -123,14 +123,19 @@ class Metamask {
   }
 }
 
-const isMetamaskInstalled = async (): Promise<unknown | undefined> => {
-  // if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
-  //   return true;
-  // }
+const isMetamaskInstalled = (): boolean => {
+  if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
+    return true
+  }
+  return false
+}
+
+const getProvider = async (): Promise<unknown | undefined> => {
   const provider = await detectEthereumProvider()
   // FIXME: how to handle??
   if (provider !== window.ethereum) {
     console.error('Do you have multiple wallets installed?')
+    return undefined
   }
   return provider
 }
@@ -143,4 +148,4 @@ const openExtension = () => {
   onboarding.startOnboarding()
 }
 
-export { Metamask, isMetamaskInstalled, openExtension }
+export { Metamask, isMetamaskInstalled, getProvider, openExtension }

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import Footer from './footer'
 import Header from './header'
+import { MetaMaskProvider } from 'metamask-react'
 
 type LayoutProps = {
   children?: ReactNode
@@ -9,11 +10,11 @@ type LayoutProps = {
 
 const Layout = ({ children, title }: LayoutProps) => {
   return (
-    <>
+    <MetaMaskProvider>
       <Header title={title} />
       <main>{children}</main>
       <Footer />
-    </>
+    </MetaMaskProvider>
   )
 }
 
