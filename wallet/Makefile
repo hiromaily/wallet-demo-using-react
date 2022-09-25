@@ -18,3 +18,7 @@ build:
 # .PHONY: deploy
 # deploy:
 # 	npm run export
+
+.PHONY: publish
+publish:
+	ngrok http 3000

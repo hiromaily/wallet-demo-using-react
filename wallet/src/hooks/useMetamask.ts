@@ -17,6 +17,7 @@ const getMatamask = async (): Promise<Metamask | undefined> => {
 // custom hook for metamask connecting network
 export const useMetamask = () => {
   const [isConnected, setConnectionStatus] = useState(false)
+  const [address, setAddress] = useState('')
 
   useEffect(() => {
     ;(async () => {
@@ -24,6 +25,11 @@ export const useMetamask = () => {
       meta = await getMatamask()
       // FIXME to detect initial connection status
       //if (meta?.isConnected()) setConnectionStatus(true)
+
+      // when already connected, account can be retrieved without popup
+      // however,when not connected, popup is shown
+      // const account = await meta?.getAccount()
+      // console.log(`account: ${account}`)
     })()
   }, [])
 
@@ -39,19 +45,18 @@ export const useMetamask = () => {
 
   // connect network
   // return account address
-  const connect = async (): Promise<string> => {
+  const connect = async (): Promise<void> => {
     console.log('connect()')
     const meta = await getMatamask()
-    if (!meta) return ''
+    if (!meta) return
 
     // connection
     const account = await meta?.getAccount()
     console.log(`account: ${account}`)
+    setAddress(account)
 
     // connected
     setConnectionStatus(true)
-
-    return account
   }
 
   const disconnect = () => {
@@ -62,5 +67,5 @@ export const useMetamask = () => {
     setConnectionStatus(false)
   }
 
-  return { isConnected, isInstalled, connect, disconnect }
+  return { address, isConnected, isInstalled, connect, disconnect }
 }

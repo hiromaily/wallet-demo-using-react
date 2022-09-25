@@ -4,6 +4,7 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import Chip from '@mui/material/Chip'
 import Box from '@mui/material/Box'
 import Head from 'next/head'
 import Router from 'next/router'
@@ -29,10 +30,7 @@ const Header = ({ title }: HeaderProps) => {
   //const { isConnected, isInstalled, connect, disconnect } = useMetamask()
 
   // use context to get data from useMetamask()
-  const { isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
-
-  // account info
-  const [address, setAddress] = useState('your address')
+  const { address, isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
 
   const onClickRouter = useCallback(() => {
     Router.push('/')
@@ -74,8 +72,7 @@ const Header = ({ title }: HeaderProps) => {
     if (isConnected) {
       disconnect()
     } else {
-      const account = await connect()
-      setAddress(account)
+      await connect()
     }
   }, [isConnected, address])
 
@@ -97,7 +94,9 @@ const Header = ({ title }: HeaderProps) => {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Wallet Header
           </Typography>
-          <Box>{address}</Box>
+          {address !== '' &&
+            <Chip sx={{ color: 'white' }} label={address} variant='outlined' />
+          }
           <Button color='inherit' onClick={onClickRouter}>
             Router
           </Button>

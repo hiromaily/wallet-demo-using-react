@@ -3,13 +3,12 @@ import { useMetamask } from '../hooks/useMetamask'
 
 // context requires actual property if it has, don't set `{}`
 const MetaMaskContext = createContext({
+  address: '',
   isConnected: false,
   isInstalled: (): boolean => {
     return false
   },
-  connect: async () => {
-    return ''
-  },
+  connect: async () => {},
   disconnect: () => {},
 })
 
@@ -24,9 +23,10 @@ type MetaMaskProviderProps = {
 const MetaMaskProvider = ({ children }: MetaMaskProviderProps) => {
   // use hook first
   //const [isConnected, setConnectionStatus] = useState(false)
-  const { isConnected, isInstalled, connect, disconnect } = useMetamask()
+  const { address, isConnected, isInstalled, connect, disconnect } = useMetamask()
 
   const value = {
+    address,
     isConnected,
     isInstalled,
     connect,
