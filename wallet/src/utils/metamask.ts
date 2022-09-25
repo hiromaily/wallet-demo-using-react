@@ -43,6 +43,7 @@ class Metamask {
   }
 
   // check current connection status
+  // FIXME: it doesn't work anymore
   public isConnected(): boolean {
     return this.provider.isConnected
   }
@@ -140,14 +141,13 @@ const openExtension = () => {
   onboarding.startOnboarding()
 }
 
-// //getProvider just returns `window.ethereum`
-// const getProvider = async (): Promise<unknown | undefined> => {
-//   const provider = await detectEthereumProvider()
-//   if (provider !== window.ethereum) {
-//     console.error('Do you have multiple wallets installed?')
-//     return undefined
-//   }
-//   return provider
-// }
+//getProvider just returns `window.ethereum`
+const getProvider = async (): Promise<any | undefined> => {
+  const provider = await detectEthereumProvider()
+  if (provider !== window.ethereum) {
+    return undefined
+  }
+  return provider as any
+}
 
-export { Metamask, isMetamaskInstalled, openExtension }
+export { Metamask, isMetamaskInstalled, openExtension, getProvider }

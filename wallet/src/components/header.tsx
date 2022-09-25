@@ -4,13 +4,15 @@ import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import Head from 'next/head'
 import Router from 'next/router'
 //import { useMetaMask } from 'metamask-react'
-import { useCallback, useLayoutEffect } from 'react'
+import { useContext, useCallback, useState, useLayoutEffect } from 'react'
 import ConnectButton from './connectButton'
-import { useMetamask } from '../hooks/useMetamask'
+//import { useMetamask } from '../hooks/useMetamask'
 import { openExtension } from '../utils/metamask'
+import { MetaMaskContext } from '../context/metamaskContext'
 
 // import Link from 'next/link'
 // import Image from 'next/image'
@@ -23,8 +25,14 @@ const Header = ({ title }: HeaderProps) => {
   // useMetamask may be buggy
   //const { status, ethereum, connect, switchChain } = useMetaMask()
 
-  // connection hook
-  const { isConnected, isInstalled, connect, disconnect } = useMetamask()
+  // metamask hook
+  //const { isConnected, isInstalled, connect, disconnect } = useMetamask()
+
+  // use context to get data from useMetamask()
+  const { isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
+
+  // account info
+  const [address, setAddress] = useState('your address')
 
   const onClickRouter = useCallback(() => {
     Router.push('/')
@@ -66,9 +74,10 @@ const Header = ({ title }: HeaderProps) => {
     if (isConnected) {
       disconnect()
     } else {
-      connect()
+      const account = await connect()
+      setAddress(account)
     }
-  }, [isConnected])
+  }, [isConnected, address])
 
   // useLayoutEffect(() => {
   // }, [isConnected])
@@ -88,6 +97,7 @@ const Header = ({ title }: HeaderProps) => {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Wallet Header
           </Typography>
+          <Box>{address}</Box>
           <Button color='inherit' onClick={onClickRouter}>
             Router
           </Button>
