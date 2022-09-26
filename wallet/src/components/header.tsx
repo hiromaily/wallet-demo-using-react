@@ -32,14 +32,12 @@ const Header = ({ title }: HeaderProps) => {
   // use context to get data from useMetamask()
   const { address, isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
 
-  // FIXME: useCallback would Not be required here
-  const onClickRouter = useCallback(() => {
+  const onClickRouter = () => {
     Router.push('/')
-  }, [])
-  // FIXME: useCallback would Not be required here
-  const onClickExplorer = useCallback(() => {
+  }
+  const onClickExplorer = () => {
     Router.push('/explorer')
-  }, [])
+  }
 
   // const onClickConnect = useCallback(async () => {
   //   console.log('onClickConnect is called')
