@@ -9,8 +9,8 @@ import Box from '@mui/material/Box'
 import Head from 'next/head'
 import Router from 'next/router'
 //import { useMetaMask } from 'metamask-react'
-import { useContext, useCallback, useState, useLayoutEffect } from 'react'
-import ConnectButton from './connectButton'
+import { useContext, useCallback } from 'react'
+import ConnectButton from './button/connectButton'
 //import { useMetamask } from '../hooks/useMetamask'
 import { openExtension } from '../utils/metamask'
 import { MetaMaskContext } from '../context/metamaskContext'
@@ -32,9 +32,11 @@ const Header = ({ title }: HeaderProps) => {
   // use context to get data from useMetamask()
   const { address, isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
 
+  // FIXME: useCallback would Not be required here
   const onClickRouter = useCallback(() => {
     Router.push('/')
   }, [])
+  // FIXME: useCallback would Not be required here
   const onClickExplorer = useCallback(() => {
     Router.push('/explorer')
   }, [])
@@ -94,9 +96,7 @@ const Header = ({ title }: HeaderProps) => {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Wallet Header
           </Typography>
-          {address !== '' &&
-            <Chip sx={{ color: 'white' }} label={address} variant='outlined' />
-          }
+          {address !== '' && <Chip sx={{ color: 'white' }} label={address} variant='outlined' />}
           <Button color='inherit' onClick={onClickRouter}>
             Router
           </Button>

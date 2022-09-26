@@ -14,8 +14,8 @@ const Layout = ({ children, title }: LayoutProps) => {
     <>
       <MetaMaskProvider>
         <Header title={title} />
+        <main>{children}</main>
       </MetaMaskProvider>
-      <main>{children}</main>
       <Footer />
     </>
   )
