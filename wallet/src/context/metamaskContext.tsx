@@ -1,9 +1,13 @@
-import { createContext, ReactNode } from 'react'
+import { createContext, useContext, ReactNode } from 'react'
 import { useMetamask } from '../hooks/useMetamask'
 
 // context requires actual property if it has, don't set `{}`
 //const MetaMaskContext = createContext(getDefault())
 const MetaMaskContext = createContext({} as any)
+
+const useMetaMaskContext = () => {
+  return useContext(MetaMaskContext)
+}
 
 type MetaMaskProviderProps = {
   children: ReactNode
@@ -29,4 +33,4 @@ const MetaMaskProvider = ({ children }: MetaMaskProviderProps) => {
   return <MetaMaskContext.Provider value={value}>{children}</MetaMaskContext.Provider>
 }
 
-export { MetaMaskContext, MetaMaskProvider }
+export { useMetaMaskContext, MetaMaskProvider }

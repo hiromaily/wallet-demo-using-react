@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
-import { MetaMaskContext } from '../context/metamaskContext'
+import { useMetaMaskContext } from '../context/metamaskContext'
 
 type BridgeProps = {
   message: string
@@ -11,7 +11,7 @@ type BridgeProps = {
 
 const Bridge = ({ message }: BridgeProps) => {
   // use context to get data from useMetamask()
-  const { address } = useContext(MetaMaskContext)
+  const { address } = useMetaMaskContext()
 
   return (
     <>

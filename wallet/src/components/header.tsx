@@ -8,7 +8,7 @@ import Chip from '@mui/material/Chip'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { MetaMaskContext } from '../context/metamaskContext'
+import { useMetaMaskContext } from '../context/metamaskContext'
 import { openExtension } from '../utils/metamask'
 import ConnectButton from './button/connectButton'
 
@@ -18,7 +18,7 @@ type HeaderProps = {
 
 const Header = ({ title }: HeaderProps) => {
   // use context to get data from useMetamask()
-  const { address, isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
+  const { address, isConnected, isInstalled, connect, disconnect } = useMetaMaskContext()
 
   const onClickRouter = () => {
     Router.push('/')
