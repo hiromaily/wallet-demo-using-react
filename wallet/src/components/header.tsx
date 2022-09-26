@@ -63,8 +63,8 @@ const Header = ({ title }: HeaderProps) => {
   // }, [])
 
   const onClickConnect = useCallback(async () => {
-    console.log('onClickConnect is called:', isInstalled(), isConnected)
-    if (!isInstalled()) {
+    console.log('onClickConnect is called:', isInstalled, isConnected)
+    if (!isInstalled) {
       openExtension()
       return
     }
@@ -74,7 +74,7 @@ const Header = ({ title }: HeaderProps) => {
     } else {
       await connect()
     }
-  }, [isConnected, address])
+  }, [isInstalled, isConnected, address])
 
   // useLayoutEffect(() => {
   // }, [isConnected])

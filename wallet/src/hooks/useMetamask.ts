@@ -14,10 +14,22 @@ const getMatamask = async (): Promise<Metamask | undefined> => {
   return new Metamask(provider)
 }
 
+// use when metamaskContext call createContext()
+export const getDefault = (): any => {
+  return {
+    address: '',
+    isConnected: false,
+    isInstalled: false,
+    connect: async () => {},
+    disconnect: () => {},
+  }
+}
+
 // custom hook for metamask connecting network
 export const useMetamask = () => {
   const [isConnected, setConnectionStatus] = useState(false)
   const [address, setAddress] = useState('')
+  const [isInstalled, setInstallStatus] = useState(false)
 
   useEffect(() => {
     ;(async () => {
@@ -30,6 +42,12 @@ export const useMetamask = () => {
       // however,when not connected, popup is shown
       // const account = await meta?.getAccount()
       // console.log(`account: ${account}`)
+
+      // install check
+      if (isMetamaskInstalled()) {
+        console.log('installed')
+        setInstallStatus(true)
+      }
     })()
   }, [])
 
@@ -37,11 +55,6 @@ export const useMetamask = () => {
   //   meta = getMatamask()
   //   if (meta?.isConnected()) setConnectionStatus(true)
   // }, [])
-
-  // metamask installation
-  const isInstalled = (): boolean => {
-    return isMetamaskInstalled()
-  }
 
   // connect network
   // return account address

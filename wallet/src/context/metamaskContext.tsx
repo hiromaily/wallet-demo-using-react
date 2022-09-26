@@ -1,16 +1,8 @@
 import { createContext, ReactNode } from 'react'
-import { useMetamask } from '../hooks/useMetamask'
+import { useMetamask, getDefault } from '../hooks/useMetamask'
 
 // context requires actual property if it has, don't set `{}`
-const MetaMaskContext = createContext({
-  address: '',
-  isConnected: false,
-  isInstalled: (): boolean => {
-    return false
-  },
-  connect: async () => {},
-  disconnect: () => {},
-})
+const MetaMaskContext = createContext(getDefault())
 
 type MetaMaskProviderProps = {
   children: ReactNode
