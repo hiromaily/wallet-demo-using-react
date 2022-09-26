@@ -5,5 +5,24 @@
     "plugin:import/warnings",
     "prettier"
   ],
-  "rules": {}
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "{react,next,next/**}",
+            "group": "builtin",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
+  }
 }

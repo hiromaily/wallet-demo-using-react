@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
+import { MetaMaskProvider } from '../context/metamaskContext'
 import Footer from './footer'
 import Header from './header'
 //import { MetaMaskProvider } from 'metamask-react'
-import { MetaMaskProvider } from '../context/metamaskContext'
 
 type LayoutProps = {
   children?: ReactNode

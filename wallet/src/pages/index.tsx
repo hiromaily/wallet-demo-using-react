@@ -1,5 +1,5 @@
-import * as React from 'react'
 import type { NextPage, GetStaticProps } from 'next'
+import * as React from 'react'
 import Bridge from '../components/bridge'
 import Layout from '../components/layout'
 //import Style from '../styles/index.module.scss'

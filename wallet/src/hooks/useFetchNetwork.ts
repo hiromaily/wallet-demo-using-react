@@ -1,5 +1,5 @@
-import axios from 'axios'
 import { useState } from 'react'
+import axios from 'axios'
 import type { Network } from '../types/network'
 
 // custom hook for getting network list
