@@ -1,7 +1,6 @@
 import detectEthereumProvider from '@metamask/detect-provider'
 import MetaMaskOnboarding from '@metamask/onboarding'
 import { chainIDParamMap } from './chainid'
-//import { storeChainID } from '$lib/metamask/store';
 import { toDecimal } from './hex'
 
 // TODO: send transaction

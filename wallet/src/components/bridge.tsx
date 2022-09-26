@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useContext, useCallback } from 'react'
+import { useContext } from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'

@@ -3,32 +3,20 @@ import Router from 'next/router'
 import { useContext, useCallback } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-//import { useMetaMask } from 'metamask-react'
-//import { useMetamask } from '../hooks/useMetamask'
 import { MetaMaskContext } from '../context/metamaskContext'
 import { openExtension } from '../utils/metamask'
 import ConnectButton from './button/connectButton'
-
-// import Link from 'next/link'
-// import Image from 'next/image'
 
 type HeaderProps = {
   title: string
 }
 
 const Header = ({ title }: HeaderProps) => {
-  // useMetamask may be buggy
-  //const { status, ethereum, connect, switchChain } = useMetaMask()
-
-  // metamask hook
-  //const { isConnected, isInstalled, connect, disconnect } = useMetamask()
-
   // use context to get data from useMetamask()
   const { address, isConnected, isInstalled, connect, disconnect } = useContext(MetaMaskContext)
 
@@ -39,31 +27,10 @@ const Header = ({ title }: HeaderProps) => {
     Router.push('/explorer')
   }
 
-  // const onClickConnect = useCallback(async () => {
-  //   console.log('onClickConnect is called')
-  //   console.log(status)
-
-  //   if (status === 'connected') {
-  //     console.log('[connected] status is ', status)
-  //   } else if (status === 'notConnected') {
-  //     console.log('[notConnected] status is ', status)
-
-  //     // Switch to Ethereum Mainnet
-  //     await switchChain('0x1') //0x89
-  //     // connect
-  //     const account = await connect()
-  //     console.log(`account: ${account}`)
-  //   } else {
-  //     // WIP for connecting
-  //     console.log(status)
-  //     // connect
-  //     const account = await connect()
-  //     console.log(`account: ${account}`)
-  //   }
-  // }, [])
-
   const onClickConnect = useCallback(async () => {
-    console.log('onClickConnect is called:', isInstalled, isConnected)
+    console.log(
+      `onClickConnect is called: isInstalled: ${isInstalled}, isConnected: ${isConnected}`,
+    )
     if (!isInstalled) {
       openExtension()
       return
@@ -75,9 +42,6 @@ const Header = ({ title }: HeaderProps) => {
       await connect()
     }
   }, [isInstalled, isConnected, address])
-
-  // useLayoutEffect(() => {
-  // }, [isConnected])
 
   return (
     <>
