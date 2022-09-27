@@ -12,13 +12,13 @@ type ChainID = {
 // - Rinkeby (deprecated)
 // - Kovan (deprecated)
 export const chainIDMap: ChainID = {
-  1: 'Ethereum Main Network (Mainnet)',
-  3: 'Ropsten Test Network',
-  4: 'Rinkeby Test Network',
-  5: 'Goerli Test Network',
-  42: 'Kovan Test Network',
-  56: 'Binance Smart Chain Mainnet',
-  137: 'Polygon Mainnet',
+  1: 'Ethereum Main Network',
+  //3: 'Ropsten Test Network',
+  //4: 'Rinkeby Test Network',
+  //5: 'Goerli Test Network',
+  //42: 'Kovan Test Network',
+  56: 'Binance Smart Chain',
+  //137: 'Polygon Mainnet',
   //11155111: 'Sepolia Test Network'
 }
 

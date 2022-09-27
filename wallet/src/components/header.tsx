@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Router from 'next/router'
-import { useContext, useCallback } from 'react'
+import { useCallback } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
 import Button from '@mui/material/Button'

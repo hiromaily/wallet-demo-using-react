@@ -14,8 +14,7 @@ type MetaMaskProviderProps = {
 }
 
 // - wrap component which want to use useMetamask
-// - child component must use
-//  const {isConnected, isInstalled, connect, disconnect } = useContext(MetamaskContext)
+// - child component can use useMetaMaskContext()
 
 const MetaMaskProvider = ({ children }: MetaMaskProviderProps) => {
   // use hook first
