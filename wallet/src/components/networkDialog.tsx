@@ -30,7 +30,7 @@ const NetworkDialog = (props: NetworkDialogProps) => {
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
+      <DialogTitle>Network</DialogTitle>
       <List sx={{ pt: 0 }}>
         {Object.entries(chainIDMap).map(([key, network]) => (
           <ListItem button onClick={() => handleListItemClick(key, network)} key={key}>

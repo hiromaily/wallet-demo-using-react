@@ -41,8 +41,8 @@ const NetworkSwitcher = ({ children }: NetworkSwitcherProps) => {
         Selected: {selectedValue}
       </Typography>
       <br />
-      <Button variant='outlined' onClick={onClickOpen}>
-        Open Network Dialog
+      <Button variant='outlined' size='medium' sx={{ minWidth: 120 }} onClick={onClickOpen}>
+        Network Dialog
       </Button>
       <NetworkDialog
         selectedValue={selectedValue}
