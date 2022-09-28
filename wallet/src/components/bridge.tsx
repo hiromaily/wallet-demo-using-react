@@ -3,8 +3,8 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
 import { useMetaMaskContext } from '../context/metamaskContext'
-import UseDappComponent from './usedappComponent'
-import UseDappComponent2 from './usedappComponent2'
+import UseDappConnect from './usedappConnect'
+import UseDappSwitch from './usedappSwitch'
 import UseDappWrapper from './usedappWrapper'
 
 type BridgeProps = {
@@ -23,7 +23,6 @@ const Bridge = ({ message }: BridgeProps) => {
           <h1>Router</h1>
           <p>{message}</p>
           <p>{address}</p>
-          <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
           <UseDappWrapper>
             <Box
               sx={{
@@ -33,8 +32,8 @@ const Bridge = ({ message }: BridgeProps) => {
                 flexDirection: 'row',
               }}
             >
-              <UseDappComponent />
-              <UseDappComponent2 />
+              <UseDappConnect />
+              <UseDappSwitch />
             </Box>
           </UseDappWrapper>
         </Box>

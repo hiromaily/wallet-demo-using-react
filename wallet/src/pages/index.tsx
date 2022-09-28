@@ -21,7 +21,7 @@ export default Index
 // For SSG
 export const getStaticProps: GetStaticProps<IndexProps> = async (context) => {
   const timestamp = new Date().toLocaleString()
-  const message = `getStaticProps is called at ${timestamp}`
+  const message = `this page was rendered by calling getStaticProps() at ${timestamp}`
   return {
     props: {
       message,

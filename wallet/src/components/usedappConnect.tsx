@@ -25,7 +25,7 @@ const TextStyle = styled.p`
   text-overflow: ellipsis;
 `
 
-const UseDappComponent = () => {
+const UseDappConnect = () => {
   const config = getConfig()
 
   const { account, activateBrowserWallet, deactivate, chainId } = useEthers()
@@ -90,4 +90,4 @@ const UseDappComponent = () => {
   )
 }
 
-export default UseDappComponent
+export default UseDappConnect

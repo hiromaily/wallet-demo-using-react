@@ -31,7 +31,7 @@ export default Explorer
 // For SSR
 export const getServerSideProps: GetServerSideProps<ExplorerProps> = async (context) => {
   const timestamp = new Date().toLocaleString()
-  const message = `getServerSideProps is called at ${timestamp}`
+  const message = `this page was rendered by calling getServerSideProps() at ${timestamp}`
 
   return {
     props: {

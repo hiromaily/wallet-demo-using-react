@@ -24,7 +24,7 @@ const AddressStyle = styled.p`
   text-overflow: ellipsis;
 `
 
-const UseDappComponent2 = () => {
+const UseDappSwitch = () => {
   const config = getConfig()
 
   const { account, chainId, switchNetwork } = useEthers()
@@ -55,4 +55,4 @@ const UseDappComponent2 = () => {
   )
 }
 
-export default UseDappComponent2
+export default UseDappSwitch

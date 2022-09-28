@@ -1,11 +1,11 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import Router from 'next/router'
 import { useCallback } from 'react'
-import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
-import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { useMetaMaskContext } from '../context/metamaskContext'
@@ -52,9 +52,9 @@ const Header = ({ title }: HeaderProps) => {
       </Head>
       <AppBar sx={{ bgcolor: 'rgb(27, 33, 59)' }} position='static'>
         <Toolbar>
-          <IconButton size='large' edge='start' color='inherit' aria-label='menu' sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton>
+          <Box sx={{ marginRight: '20px' }}>
+            <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
+          </Box>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Wallet Header
           </Typography>
