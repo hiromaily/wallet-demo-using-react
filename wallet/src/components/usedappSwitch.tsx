@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { useEtherBalance, useEthers } from '@usedapp/core'
+import { useEthers } from '@usedapp/core'
 import styled from 'styled-components'
-import { getConfig } from '../utils/useDApp'
+import { getUseDAppConfig } from '../utils/chainid'
 import NetworkSwitcher from './networkSwitcher'
 
 const commonStyles = {
@@ -25,10 +25,9 @@ const AddressStyle = styled.p`
 `
 
 const UseDappSwitch = () => {
-  const config = getConfig()
+  const config = getUseDAppConfig()
 
-  const { account, chainId, switchNetwork } = useEthers()
-  const etherBalance = useEtherBalance(account)
+  const { account, chainId } = useEthers()
 
   if (!chainId || !config.readOnlyUrls![chainId]) {
     // error

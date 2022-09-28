@@ -1,3 +1,7 @@
+import { Mainnet, DEFAULT_SUPPORTED_CHAINS } from '@usedapp/core'
+import type { Config, Chain } from '@usedapp/core'
+import { providers } from 'ethers'
+
 type ChainID = {
   [key: number]: string
 }
@@ -41,6 +45,21 @@ type ChainIDParam = {
 }
 
 export const chainIDParamMap: ChainIDParam = {
+  10: {
+    chainId: '0xa', // 10
+    chainName: 'Optimism',
+    nativeCurrency: {
+      name: 'ETH',
+      symbol: 'ETH',
+      decimals: 18,
+    },
+    rpcUrls: [
+      'https://mainnet.optimism.io',
+      'https://rpc.ankr.com/optimism',
+      'https://optimism-mainnet.public.blastapi.io',
+    ],
+    blockExplorerUrls: ['https://optimistic.etherscan.io/'],
+  },
   56: {
     chainId: '0x38', // 56
     chainName: 'Binance Smart Chain Mainnet',
@@ -85,3 +104,32 @@ export const chainIDParamMap: ChainIDParam = {
   // 	blockExplorerUrls: ['https://sepolia.etherscan.io/']
   // }
 }
+
+// // e.g.
+// const optimismChain: Chain = {
+//   chainId: 10,
+//   chainName: 'Optimism',
+//   multicallAddress: '',
+//   rpcUrl: 'https://mainnet.optimism.io',
+//   blockExplorerUrl: 'https://optimistic.etherscan.io/',
+//   nativeCurrency: {
+//     name: 'ETH',
+//     symbol: 'ETH',
+//     decimals: 18,
+//   }
+// }
+
+// TODO set readOnlyUrls from definition
+const getUseDAppConfig = (): Config => {
+  return {
+    readOnlyChainId: Mainnet.chainId,
+    readOnlyUrls: {
+      [Mainnet.chainId]: 'https://mainnet.infura.io/v3/b8d655803ca04f6890611b8a1e43f466',
+      [10]: new providers.JsonRpcProvider('https://mainnet.optimism.io'),
+      [56]: new providers.JsonRpcProvider('https://bsc-dataseed1.binance.org'),
+    },
+    networks: [...DEFAULT_SUPPORTED_CHAINS],
+  }
+}
+
+export { getUseDAppConfig }

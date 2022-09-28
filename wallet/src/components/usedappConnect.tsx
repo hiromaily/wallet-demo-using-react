@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import { useEtherBalance, useEthers } from '@usedapp/core'
 import styled from 'styled-components'
-import { getConfig } from '../utils/useDApp'
+import { getUseDAppConfig } from '../utils/chainid'
 
 const commonStyles = {
   bgcolor: 'rgb(67, 77, 115)',
@@ -26,7 +26,7 @@ const TextStyle = styled.p`
 `
 
 const UseDappConnect = () => {
-  const config = getConfig()
+  const config = getUseDAppConfig()
 
   const { account, activateBrowserWallet, deactivate, chainId } = useEthers()
   const etherBalance = useEtherBalance(account)

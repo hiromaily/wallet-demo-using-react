@@ -41,7 +41,7 @@ const Header = ({ title }: HeaderProps) => {
     } else {
       await connect()
     }
-  }, [isInstalled, isConnected, address])
+  }, [isInstalled, isConnected, connect, disconnect])
 
   return (
     <>

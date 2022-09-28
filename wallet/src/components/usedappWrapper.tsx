@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
 import { DAppProvider } from '@usedapp/core'
-import { getConfig } from '../utils/useDApp'
+import { getUseDAppConfig } from '../utils/chainid'
 
 type UseDappComponentProps = {
   children?: ReactNode
 }
 
 const UseDappWrapper = ({ children }: UseDappComponentProps) => {
-  const config = getConfig()
+  const config = getUseDAppConfig()
 
   return <DAppProvider config={config}>{children}</DAppProvider>
 }

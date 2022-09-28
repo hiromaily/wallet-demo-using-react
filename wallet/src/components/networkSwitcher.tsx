@@ -22,10 +22,7 @@ const NetworkSwitcher = ({ children }: NetworkSwitcherProps) => {
   }
 
   const onClickSelected = (key: string, value: string) => {
-    //TODO switch
-    if (parseInt(key)) {
-      switchNetwork(parseInt(key))
-    }
+    if (parseInt(key)) switchNetwork(parseInt(key))
 
     onClickClose(value)
   }
