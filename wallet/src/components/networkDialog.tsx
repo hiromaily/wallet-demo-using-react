@@ -12,20 +12,19 @@ import { chainIDMap } from '../utils/chainid'
 
 export interface NetworkDialogProps {
   open: boolean
-  selectedValue: string
-  onClickClose: (value: string) => void
-  onClickSelected: (key: string, value: string) => void
+  onClickClose: () => void
+  onClickSelected: (chainId: string) => void
 }
 
 const NetworkDialog = (props: NetworkDialogProps) => {
-  const { onClickClose, onClickSelected, selectedValue, open } = props
+  const { onClickClose, onClickSelected, open } = props
 
   const handleClose = () => {
-    onClickClose(selectedValue)
+    onClickClose()
   }
 
-  const handleListItemClick = (key: string, value: string) => {
-    onClickSelected(key, value)
+  const handleListItemClick = (key: string) => {
+    onClickSelected(key)
   }
 
   return (
@@ -33,7 +32,7 @@ const NetworkDialog = (props: NetworkDialogProps) => {
       <DialogTitle>Network</DialogTitle>
       <List sx={{ pt: 0 }}>
         {Object.entries(chainIDMap).map(([key, network]) => (
-          <ListItem button onClick={() => handleListItemClick(key, network)} key={key}>
+          <ListItem button onClick={() => handleListItemClick(key)} key={key}>
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
                 <PersonIcon />

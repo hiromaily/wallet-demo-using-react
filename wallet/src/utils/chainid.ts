@@ -1,4 +1,4 @@
-import { Mainnet, DEFAULT_SUPPORTED_CHAINS } from '@usedapp/core'
+import { Mainnet, BSC, Optimism, DEFAULT_SUPPORTED_CHAINS } from '@usedapp/core'
 import type { Config, Chain } from '@usedapp/core'
 import { providers } from 'ethers'
 
@@ -119,14 +119,14 @@ export const chainIDParamMap: ChainIDParam = {
 //   }
 // }
 
-// TODO set readOnlyUrls from definition
+// TODO read value from environment variable or somewhere
 const getUseDAppConfig = (): Config => {
   return {
     readOnlyChainId: Mainnet.chainId,
     readOnlyUrls: {
       [Mainnet.chainId]: 'https://mainnet.infura.io/v3/b8d655803ca04f6890611b8a1e43f466',
-      [10]: new providers.JsonRpcProvider('https://mainnet.optimism.io'),
-      [56]: new providers.JsonRpcProvider('https://bsc-dataseed1.binance.org'),
+      [Optimism.chainId]: new providers.JsonRpcProvider('https://mainnet.optimism.io'),
+      [BSC.chainId]: new providers.JsonRpcProvider('https://bsc-dataseed1.binance.org'),
     },
     networks: [...DEFAULT_SUPPORTED_CHAINS],
   }
