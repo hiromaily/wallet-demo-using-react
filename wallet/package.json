@@ -21,6 +21,7 @@
     "@metamask/detect-provider": "^1.2.0",
     "@metamask/onboarding": "^1.0.1",
     "@mui/icons-material": "^5.10.6",
+    "@mui/joy": "^5.0.0-alpha.47",
     "@mui/material": "^5.10.6",
     "@usedapp/core": "^1.1.5",
     "axios": "^0.27.2",

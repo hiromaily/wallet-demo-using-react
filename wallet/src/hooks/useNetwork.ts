@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import useSWR, { useSWRConfig } from 'swr'
 import { fetcher } from '../utils/fetcher'
 
@@ -23,8 +24,15 @@ const isNetwork = (arg: any): arg is Network => {
 }
 
 export const useNetwork = () => {
-  // TODO: call from client
-  const { data, error } = useSWR(`http://127.0.0.1:8887/network.json`, fetcher)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // call from client
+  //const { data, error } = useSWR(`http://127.0.0.1:8887/network.json`, fetcher)
+  const { data, error } = useSWR(mounted ? `http://127.0.0.1:8887/network.json` : null, fetcher)
   // type check
   if (!isNetwork(data)) {
     console.error(`invalid response`)

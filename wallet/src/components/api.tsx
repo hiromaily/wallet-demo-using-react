@@ -1,9 +1,12 @@
+import { useState, useEffect } from 'react'
+
+import List from '@mui/joy/List'
+import ListDivider from '@mui/joy/ListDivider'
+import ListItem from '@mui/joy/ListItem'
+import ListItemDecorator from '@mui/joy/ListItemDecorator'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import styled from 'styled-components'
 import { useNetwork } from '../hooks/useNetwork'
@@ -29,6 +32,7 @@ const TextStyle = styled.p`
 `
 
 const API = () => {
+  // API call
   const { network, isLoading, isError } = useNetwork()
   console.log(`network: ${network}, isLoading: ${isLoading}, isError: ${isError}`)
 
@@ -58,14 +62,16 @@ const API = () => {
             </Button>
 
             <Box>
-              {!isError && !network && <CircularProgress />}
+              {isLoading && <CircularProgress />}
               {isError && <TextStyle>{isError}</TextStyle>}
               <List>
                 {network &&
                   network.map((nt: Network) => {
                     return (
                       <ListItem key={nt.id}>
-                        <ListItemText primary={nt.name} />
+                        <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                          {nt.name}
+                        </ListItemDecorator>
                       </ListItem>
                     )
                   })}
