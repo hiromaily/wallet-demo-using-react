@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
 import { useMetaMaskContext } from '../context/metamaskContext'
+import API from './api'
 import UseDappConnect from './usedappConnect'
 import UseDappSwitch from './usedappSwitch'
 import UseDappWrapper from './usedappWrapper'
@@ -27,7 +28,7 @@ const Bridge = ({ message }: BridgeProps) => {
             <Box
               sx={{
                 width: 500,
-                height: 400,
+                height: 230,
                 display: 'flex',
                 flexDirection: 'row',
               }}
@@ -36,6 +37,7 @@ const Bridge = ({ message }: BridgeProps) => {
               <UseDappSwitch />
             </Box>
           </UseDappWrapper>
+          <API />
         </Box>
       </Container>
     </>

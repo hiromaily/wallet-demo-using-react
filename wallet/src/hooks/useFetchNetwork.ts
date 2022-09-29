@@ -2,6 +2,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import type { Network } from '../types/network'
 
+// Note: This code is just sample and would be removed
+
 // custom hook for getting network list
 export const useFetchNetworks = () => {
   const [networkList, setNetworkList] = useState([] as Network[])
