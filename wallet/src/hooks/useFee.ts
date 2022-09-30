@@ -7,6 +7,9 @@ export type Fee = {
   bridgeFee: number
 }
 
+//export const feeURL = 'http://127.0.0.1:8887/fee.json'
+export const feeURL = '/fee'
+
 const isFee = (arg: any): arg is Fee => {
   if (arg === undefined) return true
   if (!Array.isArray(arg)) return false
@@ -24,11 +27,8 @@ export const useFee = () => {
     setMounted(true)
   }, [])
 
-  // call from client
-  const { data, error } = useSWR(
-    mounted ? [`http://127.0.0.1:8887/fee.json`, queryParams] : null,
-    queryFetcher,
-  )
+  // Note: when using Mock Service Worker, API can't response for a while after server started
+  const { data, error } = useSWR(mounted ? [feeURL, queryParams] : null, queryFetcher)
   // type check
   if (!isFee(data)) {
     console.error(`invalid response`)

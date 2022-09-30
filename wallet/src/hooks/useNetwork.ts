@@ -9,7 +9,8 @@ export type Network = {
   blockExplorerUrls: string[]
 }
 
-export const networkURL = 'http://127.0.0.1:8887/network.json'
+//export const networkURL = 'http://127.0.0.1:8887/network.json'
+export const networkURL = '/network'
 
 const isNetwork = (arg: any): arg is Network => {
   if (arg === undefined) return true
@@ -39,7 +40,7 @@ export const useNetwork = () => {
     mutate(networkURL)
   }
 
-  //const { data, error } = useSWR(`http://127.0.0.1:8887/network.json`, fetcher)
+  // Note: when using Mock Service Worker, API can't response for a while after server started
   const { data, error } = useSWR(mounted ? networkURL : null, fetcher)
   // type check
   if (!isNetwork(data)) {

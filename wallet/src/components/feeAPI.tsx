@@ -66,7 +66,7 @@ const NetworkAPI = () => {
 
             <Box>
               {isLoading && <CircularProgress />}
-              {error && <TextStyle>{error}</TextStyle>}
+              {error && <TextStyle>error</TextStyle>}
               {fee && (
                 <>
                   <p>{fee.gas}</p>

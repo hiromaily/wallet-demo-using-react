@@ -63,7 +63,7 @@ const NetworkAPI = () => {
 
             <Box>
               {isLoading && <CircularProgress />}
-              {error && <TextStyle>{error}</TextStyle>}
+              {error && <TextStyle>error</TextStyle>}
               <List>
                 {network &&
                   network.map((nt: Network) => {
