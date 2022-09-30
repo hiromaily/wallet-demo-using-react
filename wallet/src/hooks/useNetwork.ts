@@ -9,6 +9,8 @@ export type Network = {
   blockExplorerUrls: string[]
 }
 
+export const networkURL = 'http://127.0.0.1:8887/network.json'
+
 const isNetwork = (arg: any): arg is Network => {
   if (arg === undefined) return true
   if (!Array.isArray(arg)) return false
@@ -31,8 +33,14 @@ export const useNetwork = () => {
   }, [])
 
   // call from client
+  const { mutate } = useSWRConfig()
+
+  const muteWithKey = () => {
+    mutate(networkURL)
+  }
+
   //const { data, error } = useSWR(`http://127.0.0.1:8887/network.json`, fetcher)
-  const { data, error } = useSWR(mounted ? `http://127.0.0.1:8887/network.json` : null, fetcher)
+  const { data, error } = useSWR(mounted ? networkURL : null, fetcher)
   // type check
   if (!isNetwork(data)) {
     console.error(`invalid response`)
@@ -41,6 +49,7 @@ export const useNetwork = () => {
   return {
     network: data,
     isLoading: !error && !data,
-    isError: error,
+    error: error,
+    mutate: muteWithKey,
   }
 }

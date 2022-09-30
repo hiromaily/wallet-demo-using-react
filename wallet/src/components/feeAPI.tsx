@@ -9,8 +9,8 @@ import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import styled from 'styled-components'
-import { useNetwork } from '../hooks/useNetwork'
-import type { Network } from '../hooks/useNetwork'
+import { useFee } from '../hooks/useFee'
+import type { Fee } from '../hooks/useFee'
 
 const commonStyles = {
   bgcolor: 'rgb(67, 77, 115)',
@@ -18,7 +18,7 @@ const commonStyles = {
   m: 1,
   border: 1,
   borderRadius: '16px',
-  width: '260px',
+  width: '200px',
   height: '260px',
   //display: 'flex',
   //justifyContent: 'center',
@@ -31,13 +31,16 @@ const TextStyle = styled.p`
   text-overflow: ellipsis;
 `
 
-const API = () => {
+const NetworkAPI = () => {
   // API call
-  const { network, isLoading, isError } = useNetwork()
-  console.log(`network: ${network}, isLoading: ${isLoading}, isError: ${isError}`)
+  const { fee, isLoading, error, setQueryparams } = useFee()
+  console.log(`fee: ${fee}, isLoading: ${isLoading}, error: ${error}`)
 
   const onClickConnect = () => {
     console.log('click connect')
+    const ts = Date.now().toString()
+
+    setQueryparams(`?timestamp=${ts}`)
   }
 
   return (
@@ -50,7 +53,7 @@ const API = () => {
               component='div'
               sx={{ flexGrow: 1, marginTop: '10px', marginBottom: '20px' }}
             >
-              API
+              Fee API
             </Typography>
             <Button
               variant='outlined'
@@ -63,19 +66,13 @@ const API = () => {
 
             <Box>
               {isLoading && <CircularProgress />}
-              {isError && <TextStyle>{isError}</TextStyle>}
-              <List>
-                {network &&
-                  network.map((nt: Network) => {
-                    return (
-                      <ListItem key={nt.id}>
-                        <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                          {nt.name}
-                        </ListItemDecorator>
-                      </ListItem>
-                    )
-                  })}
-              </List>
+              {error && <TextStyle>{error}</TextStyle>}
+              {fee && (
+                <>
+                  <p>{fee.gas}</p>
+                  <p>{fee.bridgeFee}</p>
+                </>
+              )}
             </Box>
           </Box>
         </Box>
@@ -84,4 +81,4 @@ const API = () => {
   )
 }
 
-export default API
+export default NetworkAPI
