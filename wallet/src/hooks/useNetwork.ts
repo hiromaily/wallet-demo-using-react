@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import useSWR, { useSWRConfig } from 'swr'
 import { fetcher } from '../utils/fetcher'
+import { filterError } from '../utils/swrUtils'
 
 export type Network = {
   id: number
@@ -44,13 +45,15 @@ export const useNetwork = () => {
   const { data, error } = useSWR(mounted ? networkURL : null, fetcher)
   // type check
   if (!isNetwork(data)) {
-    console.error(`invalid response`)
+    // while using Mock Service Worker (MSW), this happens
+    //console.error(`invalid response`)
   }
+  let newError = filterError(error)
 
   return {
     network: data,
-    isLoading: !error && !data,
-    error: error,
+    isLoading: !newError && !data,
+    error: newError,
     mutate: muteWithKey,
   }
 }

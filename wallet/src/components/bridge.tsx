@@ -1,8 +1,9 @@
-import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import CssBaseline from '@mui/material/CssBaseline'
+import { SWRConfig } from 'swr'
 import { useMetaMaskContext } from '../context/metamaskContext'
+import { endpoint, configs } from '../utils/swrUtils'
 import FeeAPI from './feeAPI'
 import NetworkAPI from './networkAPI'
 import UseDappConnect from './usedappConnect'
@@ -46,8 +47,12 @@ const Bridge = ({ message }: BridgeProps) => {
               flexDirection: 'row',
             }}
           >
-            <NetworkAPI />
-            <FeeAPI />
+            {/** <SWRConfig value={{ use: [endpoint] }}> **/}
+            <SWRConfig value={configs}>
+              <NetworkAPI />
+              <FeeAPI />
+            </SWRConfig>
+            {/** </SWRConfig> **/}
           </Box>
         </Box>
       </Container>

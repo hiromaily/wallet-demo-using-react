@@ -5,7 +5,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 npx create-next-app wallet --ts --use-npm
 ```
 
-## TODO
+## Environment variables
+| Name         | Explanation                                                                                                       | e.g. Value                   |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| API_ENDPOINT | In code, API Route is defined for only path and it works on mock, production environment requires actual endpoint | `https://your-server/api/v1` |
+| NODE_ENV     | `development` is used for mock server                                                                             | `development`                |
 
 
 ## Getting Started

@@ -1,5 +1,9 @@
 export {}
 
+// const options: any = {
+//   onUnhandledRequest: 'error',
+// }
+
 if (typeof window === 'undefined') {
   // enable msw worker by dynamic import
   const mockServer = () =>
