@@ -1,6 +1,7 @@
 import { stripHexPrefix, toDecimal, hexStrToDecimal } from './hex'
 
-describe('hex functions', () => {
+// temporarily skipped by xdescribe
+xdescribe('hex functions', () => {
   test('stripHexPrefix works', () => {
     expect(stripHexPrefix('0x9cf8dbb8ebd')).toBe('9cf8dbb8ebd')
   })
@@ -16,6 +17,15 @@ describe('hex functions', () => {
 
   test('toDecimal works', () => {
     expect(toDecimal(0x3e8)).toBe(1000)
+  })
+
+  // table driven test
+  test.each([
+    { title: 'toDecimal 1', arg: 0x73f, result: 1855 },
+    { title: 'toDecimal 2', arg: 0x1a6, result: 422 },
+    { title: 'toDecimal 3', arg: 0x185f8, result: 99832 },
+  ])('$title', ({ arg, result }) => {
+    expect(toDecimal(arg)).toBe(result)
   })
 
   test('hexStrToDecimal works', () => {
