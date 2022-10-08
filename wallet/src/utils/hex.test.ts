@@ -1,7 +1,7 @@
 import { stripHexPrefix, toDecimal, hexStrToDecimal } from './hex'
 
 // temporarily skipped by xdescribe
-xdescribe('hex functions', () => {
+describe('hex functions', () => {
   test('stripHexPrefix works', () => {
     expect(stripHexPrefix('0x9cf8dbb8ebd')).toBe('9cf8dbb8ebd')
   })

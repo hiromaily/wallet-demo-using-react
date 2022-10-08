@@ -1,7 +1,6 @@
-import { ButtonRoot } from '@mui/joy/Button/Button'
 import { render, screen } from '@testing-library/react'
-//import userEvent from '@testing-library/user-event'
-
+import '@testing-library/jest-dom/extend-expect'
+import userEvent from '@testing-library/user-event'
 import ConnectButton from './connectButton'
 
 const onClickConnect = async () => {
@@ -11,13 +10,30 @@ const onClickConnect = async () => {
 describe('ConnectButton component', () => {
   // table driven test
   test.each([
-    { title: 'connected', arg: true, result: 'Disconnect' },
-    { title: 'not connected', arg: false, result: 'Connect to a wallet' },
+    { title: 'name when connected', arg: true, result: 'Disconnect' },
+    { title: 'name when not connected', arg: false, result: 'Connect to a wallet' },
   ])('$title', ({ arg, result }) => {
     render(<ConnectButton isConnected={arg} onClick={onClickConnect} />)
 
     const button = screen.getByRole('button')
     //screen.debug(button.textContent)
-    expect(button.textContent).toBe(result)
+    expect(button).toHaveTextContent(result)
+  })
+
+  // just different way to check name
+  test('button name', () => {
+    render(<ConnectButton isConnected={false} onClick={onClickConnect} />)
+    expect(screen.getByText('Connect to a wallet')).toBeInTheDocument()
+  })
+
+  test('button click', async () => {
+    const logSpy = jest.spyOn(console, 'log')
+
+    render(<ConnectButton isConnected={false} onClick={onClickConnect} />)
+    const button = screen.getByRole('button')
+    await userEvent.click(button)
+
+    // check console log
+    expect(logSpy).toHaveBeenCalledWith('onClickConnect')
   })
 })
