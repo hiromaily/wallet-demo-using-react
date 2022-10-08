@@ -13,7 +13,7 @@
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "type-check": "tsc --noEmit",
     "all": "npm run format && npm run lint:fix && npm run type-check",
-    "test": "jest --config ./jest.config.js",
+    "test": "NODE_ENV=test jest --config ./jest.config.js",
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {

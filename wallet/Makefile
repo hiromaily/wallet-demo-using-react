@@ -20,6 +20,10 @@ dev:
 lint:
 	npm run all
 
+.PHONY: test
+test:
+	npm run test
+
 # This output is generated inside the .next folder
 .PHONY: build
 build:
