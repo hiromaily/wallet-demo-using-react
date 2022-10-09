@@ -24,13 +24,4 @@ const configs = {
   // },
 }
 
-const filterError: any = (error: any) => {
-  let newError: any = undefined
-  // skip Mock Service Worker specific error
-  if (error && typeof error === 'string' && error.includes('SyntaxError:')) {
-    return undefined
-  }
-  return error
-}
-
-export { endpoint, configs, filterError }
+export { endpoint, configs }

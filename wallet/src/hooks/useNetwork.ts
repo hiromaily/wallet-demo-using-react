@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import useSWR, { useSWRConfig } from 'swr'
 import { fetcher } from '../utils/fetcher'
-import { filterError } from '../utils/swrUtils'
 
 export type Network = {
   id: number
@@ -10,7 +9,6 @@ export type Network = {
   blockExplorerUrls: string[]
 }
 
-//export const networkURL = 'http://127.0.0.1:8887/network.json'
 export const networkURL = '/network'
 
 const isNetwork = (arg: any): arg is Network => {
@@ -35,6 +33,7 @@ export const useNetwork = () => {
   }, [])
 
   // call from client
+  // this mutate is for Refetch Mutation
   const { mutate } = useSWRConfig()
 
   const muteWithKey = () => {
@@ -46,14 +45,12 @@ export const useNetwork = () => {
   // type check
   if (!isNetwork(data)) {
     // while using Mock Service Worker (MSW), this happens
-    //console.error(`invalid response`)
   }
-  let newError = filterError(error)
 
   return {
     network: data,
-    isLoading: !newError && !data,
-    error: newError,
+    isLoading: !error && !data,
+    error: error,
     mutate: muteWithKey,
   }
 }

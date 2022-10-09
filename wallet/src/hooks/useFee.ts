@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import useSWR from 'swr'
 import { queryFetcher } from '../utils/fetcher'
-import { filterError } from '../utils/swrUtils'
 
 export type Fee = {
   gas: number
@@ -35,12 +34,11 @@ export const useFee = () => {
     // while using Mock Service Worker (MSW), this happens
     //console.error(`invalid response`)
   }
-  let newError = filterError(error)
 
   return {
     fee: data,
-    isLoading: !newError && !data,
-    error: newError,
+    isLoading: !error && !data,
+    error: error,
     setQueryparams: setQueryparams,
   }
 }
