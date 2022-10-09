@@ -18,7 +18,7 @@ dev:
 
 .PHONY: lint
 lint:
-	npm run all
+	npm run lint-all
 
 .PHONY: test
 test:

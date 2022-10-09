@@ -12,7 +12,8 @@
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "type-check": "tsc --noEmit",
-    "all": "npm run format && npm run lint:fix && npm run type-check",
+    "lint-all": "npm run format && npm run lint:fix && npm run type-check",
+    "ci-lint-all": "npm run format && npm run lint && npm run type-check",
     "test": "NODE_ENV=test jest --config ./jest.config.js",
     "test:watch": "npm run test -- --watch"
   },
