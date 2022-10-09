@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import userEvent from '@testing-library/user-event'
 import ConnectButton from './connectButton'
@@ -8,6 +8,8 @@ const onClickConnect = async () => {
 }
 
 describe('ConnectButton component', () => {
+  afterEach(() => cleanup())
+
   // table driven test
   test.each([
     { title: 'name when connected', arg: true, result: 'Disconnect' },
@@ -31,6 +33,7 @@ describe('ConnectButton component', () => {
 
     render(<ConnectButton isConnected={false} onClick={onClickConnect} />)
     const button = screen.getByRole('button')
+    // event requires await
     await userEvent.click(button)
 
     // check console log

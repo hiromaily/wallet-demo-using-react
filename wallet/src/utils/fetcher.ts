@@ -9,11 +9,18 @@ import axios from 'axios'
 // e.g.
 // import useSWR from 'swr'
 // const { data, error } = useSWR('/api/data', fetcher)
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
-const fetcherAxios = (url: string) => axios.get(url).then((res) => res.data)
+//const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const fetcher = (url: string) =>
+  axios.get(url).then((res) => {
+    // if (res.status == 400) {
+    //   const error = new Error('400 Bad Request')
+    //   throw error
+    // }
+    return res.data
+  })
 
 const queryFetcher = (url: string, queryParams: string = '') => {
-  return fetcherAxios(`${url}${queryParams}`)
+  return fetcher(`${url}${queryParams}`)
 }
 
 export { fetcher, queryFetcher }
