@@ -1,9 +1,3 @@
-import { useState, useEffect } from 'react'
-
-import List from '@mui/joy/List'
-import ListDivider from '@mui/joy/ListDivider'
-import ListItem from '@mui/joy/ListItem'
-import ListItemDecorator from '@mui/joy/ListItemDecorator'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -31,10 +25,11 @@ const TextStyle = styled.p`
   text-overflow: ellipsis;
 `
 
-const NetworkAPI = () => {
+const FeeAPI = () => {
   // API call
   const { fee, isLoading, error, setQueryparams } = useFee()
-  console.log(`fee: ${fee}, isLoading: ${isLoading}, error: ${error}`)
+  //console.log(`fee: ${fee}, isLoading: ${isLoading}, error: ${error}`)
+  if (error) console.log(error)
 
   const onClickConnect = () => {
     console.log('click connect')
@@ -65,13 +60,13 @@ const NetworkAPI = () => {
             </Button>
 
             <Box>
-              {isLoading && <CircularProgress />}
-              {error && <TextStyle>error</TextStyle>}
+              {(isLoading || error) && <CircularProgress />}
+              {/* error && <TextStyle>error</TextStyle> */}
               {fee && (
-                <>
+                <Box>
                   <p>{fee.gas}</p>
                   <p>{fee.bridgeFee}</p>
-                </>
+                </Box>
               )}
             </Box>
           </Box>
@@ -81,4 +76,4 @@ const NetworkAPI = () => {
   )
 }
 
-export default NetworkAPI
+export default FeeAPI

@@ -1,10 +1,9 @@
-import List from '@mui/joy/List'
-import ListDivider from '@mui/joy/ListDivider'
-import ListItem from '@mui/joy/ListItem'
-import ListItemDecorator from '@mui/joy/ListItemDecorator'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import styled from 'styled-components'
 import { useNetwork } from '../hooks/useNetwork'
@@ -32,13 +31,21 @@ const TextStyle = styled.p`
 const NetworkAPI = () => {
   // API call
   const { network, isLoading, error, mutate } = useNetwork()
-  console.log(`network: ${network}, isLoading: ${isLoading}, error: ${error}`)
+  //console.log(`network: ${network}, isLoading: ${isLoading}, error: ${error}`)
+  if (error) console.log(error)
 
   const onClickConnect = () => {
     console.log('click connect')
 
     mutate()
   }
+
+  // network items
+  const listItems = network?.map((nt: Network) => (
+    <ListItem key={nt.id}>
+      <ListItemText primary={nt.name} />
+    </ListItem>
+  ))
 
   return (
     <>
@@ -60,22 +67,10 @@ const NetworkAPI = () => {
             >
               Connect
             </Button>
-
             <Box>
-              {isLoading && <CircularProgress />}
-              {error && <TextStyle>error</TextStyle>}
-              <List>
-                {network &&
-                  network.map((nt: Network) => {
-                    return (
-                      <ListItem key={nt.id}>
-                        <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                          {nt.name}
-                        </ListItemDecorator>
-                      </ListItem>
-                    )
-                  })}
-              </List>
+              {(isLoading || error) && <CircularProgress />}
+              {/* error && <TextStyle>error</TextStyle> */}
+              {listItems && <List>{listItems}</List>}
             </Box>
           </Box>
         </Box>

@@ -4,7 +4,6 @@ import type { AppProps } from 'next/app'
 if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
   const mockServer = () => import('@/mocks/worker')
   mockServer()
-  //require('@/mocks/worker')
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
