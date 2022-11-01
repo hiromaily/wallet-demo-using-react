@@ -7,9 +7,9 @@ npx create-next-app wallet --ts --use-npm
 
 ## Environment variables
 | Name         | Explanation                                                                                                       | e.g. Value                   |
-| ------------ | ----------------------------------------------------------------------------------------------------------------- |
+| ------------ | ----------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | API_ENDPOINT | In code, API Route is defined for only path and it works on mock, production environment requires actual endpoint | `https://your-server/api/v1` |
-| NODE_ENV     | `development` is used for mock server                                                                             | `development`                |
+| NODE_ENV     | `development`, `test` are used for mock server                                                                    | `development`                |
 
 
 ## Getting Started
